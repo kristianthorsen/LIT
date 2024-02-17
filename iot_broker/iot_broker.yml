@@ -1,0 +1,63 @@
+asyncapi: '2.0.0'
+info:
+  title: IoT Broker Async API
+  version: '1.0.0'
+channels:
+  device/+/provisioned:
+    parameters:
+      macAddress:
+        description: MAC address of the device
+        schema:
+          type: string
+    subscribe:
+      message:
+        name: DeviceProvisionedEvent
+        payload:
+          $ref: '#/components/schemas/DevicePayload'
+    publish:
+      message:
+        name: DeviceProvisionedEvent
+        payload:
+          $ref: '#/components/schemas/DevicePayload'
+  device/+/status:
+    parameters:
+      macAddress:
+        description: MAC address of the device
+        schema:
+          type: string
+    subscribe:
+      message:
+        name: DeviceStatusChangedEvent
+        payload:
+          $ref: '#/components/schemas/DevicePayload'
+    publish:
+      message:
+        name: DeviceStatusChangedEvent
+        payload:
+          $ref: '#/components/schemas/DevicePayload'
+components:
+  schemas:
+    DevicePayload:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the device
+        macAddress:
+          type: string
+          description: MAC address of the device
+        location:
+          type: string
+          description: Location of the device
+        status:
+          type: string
+          description: Status of the device
+        lastReported:
+          type: string
+          description: Last reported time of the device
+      required:
+        - name
+        - macAddress
+        - location
+        - status
+        - lastReported

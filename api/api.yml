@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: Device API
+  version: 1.0.0
+paths:
+  /devices:
+    get:
+      summary: Get all devices
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      description: ID of the device
+                    name:
+                      type: string
+                      description: Name of the device
+                    macAddress:
+                      type: string
+                      description: MAC address of the device
+                    location:
+                      type: string
+                      description: Location of the device
+                    status:
+                      type: string
+                      description: Status of the device
+                    lastReported:
+                      type: string
+                      description: Last reported time of the device
