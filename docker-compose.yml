@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+  iot-broker:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    ports:
+      - "1800:1883"
+    volumes:
+      - ./iot_broker:/etc/mosquitto
+      - ./iot_broker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: thisissecret
+      PGDATA: /data/postgres
+    restart: unless-stopped
+
+  api:
+    build:
+      dockerfile: Dockerfile
+      target: api
+    ports:
+      - 6000:3000
+    command: pnpm run start
+    environment:
+      DB_URL: postgres://postgres:thisissecret@postgres:5432/postgres
+      MQTT_HOST: mqtt://iot-broker:1883
+    volumes:
+      - ./api/src:/api/src
+    depends_on:
+      - postgres
+      - iot-broker
+
+  async-api-broker:
+    image: eclipse-mosquitto
+    hostname: mosquitto
+    ports:
+      - "1801:1883"
+    volumes:
+      - ./async_api/broker:/etc/mosquitto
+      - ./async_api/broker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  async-api:
+    build:
+      dockerfile: Dockerfile
+      target: async-api
+    ports:
+      - 6001:3000
+    command: pnpm run start
+    environment:
+      DB_URL: postgres://postgres:thisissecret@postgres:5432/postgres
+      MQTT_HOST: mqtt://iot-broker:1883
+      ASYNC_API_HOSTNAME: mqtt://async-api-broker:1883
+    volumes:
+      - ./async_api/src:/async_api/src
+    depends_on:
+      - iot-broker
+      - async-api-broker
+  
