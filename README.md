@@ -1,6 +1,6 @@
-# LIT
+# LIT Platform
 
-LIT is short for Local IoT Platform and is a project which implements a locally hosted IoT Platform.
+LIT Platform is short for Local IoT Platform and is a project which implements a locally hosted IoT Platform.
 
 The platform consists of an IoTBroker (using MosquittoMqtt), for IoT devices to connect to, and two different interfaces for interacting with devices connected to the broker. The first interface is a REST API. The second interface a an async API, which enables consumers of the IoT Platform to build completely event-based services consuming the platform.
 
@@ -29,3 +29,7 @@ To host the IoT Platform locally, simply, clone the Github repository and run do
 - [API](./api/api.yml)
 - [Async-API](./async_api/async-api.yml)
 - [IoT-Broker](./iot_broker/iot_broker.yml)
+
+### Architecture implemented
+
+![Architecture diagram](./arch_diagram.png)
