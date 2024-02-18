@@ -7,4 +7,3 @@ export const makeEvent = (event: Constructor<IBaseEvent> ) =>
   const eventResource = appContainer.build(event)
   await eventResource.handle(topic, message)
 }
-

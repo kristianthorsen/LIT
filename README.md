@@ -27,9 +27,17 @@ To host the IoT Platform locally, simply, clone the Github repository and run do
 ### API Specifications for interacting with platform
 
 - [API](./api/api.yml)
-- [Async-API](./async_api/async-api.yml)
+- [Async-API](./async_api/async_api.yml)
 - [IoT-Broker](./iot_broker/iot_broker.yml)
 
 ### Architecture implemented
 
-![Architecture diagram](./arch_diagram.png)
+![Implemented Architecture diagram](./implemented_architecture.png)
+
+## Flow Diagram architecture implemented
+
+![Flow Diagram Architecture implemented](flow_diagram_implemented_architecture.png)
+
+## How it would look in AWS with a Serverless approach
+
+![Cloud Arch Serverless Approach](aws_cloud_approach.png)
