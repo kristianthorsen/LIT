@@ -34,10 +34,10 @@ To host the IoT Platform locally, simply, clone the Github repository and run do
 
 ![Implemented Architecture diagram](./implemented_architecture.png)
 
-## Flow Diagram architecture implemented
+### Flow Diagram architecture implemented
 
 ![Flow Diagram Architecture implemented](flow_diagram_implemented_architecture.png)
 
-## How it would look in AWS with a Serverless approach
+### How it would look in AWS with a Serverless approach
 
 ![Cloud Arch Serverless Approach](aws_cloud_approach.png)
